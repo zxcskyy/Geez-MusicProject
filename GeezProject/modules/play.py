@@ -482,7 +482,7 @@ async def play(_, message: Message):
                         message.chat.id, "I joined this group for playing music in VC"
                     )
                     await lel.edit(
-                        "<b>helper userbot joined your chat</b>",
+                        "<b>Assistant joined your chat</b>",
                     )
 
                 except UserAlreadyParticipant:
@@ -490,7 +490,7 @@ async def play(_, message: Message):
                 except Exception:
                     # print(e)
                     await lel.edit(
-                        f"<b>⛑ Flood Wait Error ⛑\n{user.first_name} tidak dapat bergabung dengan grup Anda karena banyaknya permintaan bergabung untuk userbot! Pastikan pengguna tidak dibanned dalam grup."
+                        f"<b>❌ Flood Wait Error ❌\n{user.first_name} tidak dapat bergabung dengan grup Anda karena banyaknya permintaan bergabung untuk userbot! Pastikan pengguna tidak dibanned dalam grup."
                         f"\n\nAtau tambahkan @{ASSISTANT_NAME} secara manual ke Grup Anda dan coba lagi</b>",
                     )
     try:
@@ -612,10 +612,12 @@ async def play(_, message: Message):
                     [
                         InlineKeyboardButton("1️⃣", callback_data=f'plll 0|{query}|{user_id}'),
                         InlineKeyboardButton("2️⃣", callback_data=f'plll 1|{query}|{user_id}'),
-                        InlineKeyboardButton("3️⃣", callback_data=f'plll 2|{query}|{user_id}'),
                     ],
                     [
+                        InlineKeyboardButton("3️⃣", callback_data=f'plll 2|{query}|{user_id}'),
                         InlineKeyboardButton("4️⃣", callback_data=f'plll 3|{query}|{user_id}'),
+                    ],
+                    [
                         InlineKeyboardButton("5️⃣", callback_data=f'plll 4|{query}|{user_id}'),
                     ],
                     [InlineKeyboardButton(text="🗑 Close", callback_data="cls")],
@@ -650,10 +652,6 @@ async def play(_, message: Message):
             dlurl=dlurl.replace("youtube","youtubepp")
             keyboard = InlineKeyboardMarkup(
             [
-                [
-                    InlineKeyboardButton("📌 Groups", url="https://t.me/GeezSupportGroup"),
-                    InlineKeyboardButton("⛑ Channel", url="https://t.me/GeezProjects"),
-                ],
                 [InlineKeyboardButton(text="🗑 Close", callback_data="cls")],
             ]
         )
@@ -739,7 +737,7 @@ async def ytplay(_, message: Message):
                         message.chat.id, "I joined this group for playing music in VC"
                     )
                     await lel.edit(
-                        "<b>helper userbot joined your chat</b>",
+                        "<b>Assistant joined your chat</b>",
                     )
 
                 except UserAlreadyParticipant:
@@ -747,7 +745,7 @@ async def ytplay(_, message: Message):
                 except Exception:
                     # print(e)
                     await lel.edit(
-                        f"<b>Flood Wait Error\n{user.first_name} tidak dapat bergabung dengan grup Anda karena banyaknya permintaan bergabung untuk userbot! Pastikan pengguna tidak dibanned dalam grup."
+                        f"<b>❌ Flood Wait Error ❌\n{user.first_name} tidak dapat bergabung dengan grup Anda karena banyaknya permintaan bergabung untuk userbot! Pastikan pengguna tidak dibanned dalam grup."
                         f"\n\nAtau tambahkan @{ASSISTANT_NAME} secara manual ke Grup Anda dan coba lagi</b>",
                     )
     try:
@@ -768,7 +766,7 @@ async def ytplay(_, message: Message):
         query += " " + str(i)
     print(query)
     await lel.edit("🎵 **Sedang Memproses Lagu**")
-    ydl_opts = {"format": "bestaudio[ext=m4a]"}
+    ydl_opts = {"format": "bestaudio/best"}
     try:
         results = YoutubeSearch(query, max_results=1).to_dict()
         url = f"https://youtube.com{results[0]['url_suffix']}"
@@ -792,10 +790,6 @@ async def ytplay(_, message: Message):
     dlurl=dlurl.replace("youtube","youtubepp")
     keyboard = InlineKeyboardMarkup(
             [
-                [
-                    InlineKeyboardButton("📌 Groups", url="https://t.me/GeezSupportGroup"),
-                    InlineKeyboardButton("⛑ Channel", url="https://t.me/GeezProjects"),
-                ],
                 [InlineKeyboardButton(text="🗑 Close", callback_data="cls")],
             ]
         )
@@ -881,7 +875,7 @@ async def deezer(client: Client, message_: Message):
                         message_.chat.id, "I joined this group for playing music in VC"
                     )
                     await lel.edit(
-                        "<b>helper userbot joined your chat</b>",
+                        "<b>Assistant joined your chat</b>",
                     )
 
                 except UserAlreadyParticipant:
@@ -889,7 +883,7 @@ async def deezer(client: Client, message_: Message):
                 except Exception:
                     # print(e)
                     await lel.edit(
-                        f"<b>⛑ Flood Wait Error ⛑\n{user.first_name} tidak dapat bergabung dengan grup Anda karena banyaknya permintaan bergabung untuk userbot! Pastikan pengguna tidak dibanned dalam grup."
+                        f"<b>❌ Flood Wait Error ❌\n{user.first_name} tidak dapat bergabung dengan grup Anda karena banyaknya permintaan bergabung untuk userbot! Pastikan pengguna tidak dibanned dalam grup."
                         f"\n\nAtau tambahkan @{ASSISTANT_NAME} secara manual ke Grup Anda dan coba lagi</b>",
                     )
     try:
@@ -916,7 +910,7 @@ async def deezer(client: Client, message_: Message):
         url = songs.result[0].url
         artist = songs.result[0].artist
         duration = songs.result[0].duration
-        thumbnail = "https://telegra.ph/file/fa2cdb8a14a26950da711.png"
+        thumbnail = "https://telegra.ph/file/e576f409ce185c428d4f7.jpg"
 
     except:
         await res.edit("**Tidak Ditemukan Lagu Apa Pun!**")
@@ -924,14 +918,14 @@ async def deezer(client: Client, message_: Message):
     try:    
         duuration= round(duration / 60)
         if duuration > DURATION_LIMIT:
-            await cb.message.edit(f"**Musik lebih lama dari** `{DURATION_LIMIT}` **menit tidak diperbolehkan diputar**")
+            await cb.message.edit(f"**Durasi lebih lama dari** `{DURATION_LIMIT}` **menit tidak diperbolehkan diputar**")
             return
     except:
         pass    
     
     keyboard = InlineKeyboardMarkup(
         [
-            [InlineKeyboardButton(text="⛑ Channel", url="https://t.me/GeezProjects")],
+            [InlineKeyboardButton(text="Close", callback_data="cls")],
         ]
     )
     file_path = await convert(wget.download(url))
@@ -1025,10 +1019,6 @@ async def lol_cb(b, cb):
     dlurl=dlurl.replace("youtube","youtubepp")
     keyboard = InlineKeyboardMarkup(
             [
-                [
-                    InlineKeyboardButton("📌 Groups", url="https://t.me/GeezSupportGroup"),
-                    InlineKeyboardButton("🛡️ Channel", url="https://t.me/GeezProjects"),
-                ],
                 [InlineKeyboardButton(text="🗑 Close", callback_data="cls")],
             ]
         )
