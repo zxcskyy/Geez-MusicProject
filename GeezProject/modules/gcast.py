@@ -13,14 +13,14 @@ from pyrogram.errors import UserAlreadyParticipant
 from GeezProject.services.callsmusic.callsmusic import client as geez
 from GeezProject.config import SUDO_USERS
 
-@Client.on_message(filters.command(["gcast"]))
+@Client.on_message(filters.command(["broadcast"]))
 async def broadcast(_, message: Message):
     sent=0
     failed=0
     if message.from_user.id not in SUDO_USERS:
         return
     else:
-        wtf = await message.reply("`memulai global cast...`")
+        wtf = await message.reply("`memulai Broadcast...`")
         if not message.reply_to_message:
             await wtf.edit("balas ke pesan untuk melakukan broadcast!")
             return
@@ -33,4 +33,4 @@ async def broadcast(_, message: Message):
                 await asyncio.sleep(3)
             except:
                 failed=failed+1
-        await message.reply_text(f"`gcast berhasil` \n\n**terkirim ke:** `{sent}` obrolan \n**gagal di:** {failed} obrolan")
+        await message.reply_text(f"`Pesan berhasil` \n\n**terkirim ke:** `{sent}` obrolan \n**gagal di:** {failed} obrolan")
